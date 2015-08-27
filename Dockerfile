@@ -20,6 +20,12 @@ RUN a2enmod ssl proxy proxy_http proxy_html xml2enc rewrite usertrack
 # Deactivate default sites
 RUN a2dissite 000-default default-ssl
 
+# Add proxy_html conf
+ADD mods-available/proxy_html.conf /etc/apache2/mods-available/proxy_html.conf
+
+# Link file
+RUN ln -s /etc/apache2/mods-available/proxy_html.conf /etc/apache2/mods-enabled/proxy_html.conf
+
 # Create certificate directories
 RUN mkdir -p /etc/ssl/apache/keys && \
 mkdir -p /etc/ssl/apache/certs && \
