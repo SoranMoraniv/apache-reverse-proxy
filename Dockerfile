@@ -1,6 +1,6 @@
 FROM ubuntu
 
-MAINTAINER Hauke Mettendorf <hauke.mettendorf@iteratec.de>
+MAINTAINER Hauke Mettendorf <hauke.mettendorf@proum.de>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM xterm
@@ -25,6 +25,9 @@ ADD mods-available/proxy_html.conf /etc/apache2/mods-available/proxy_html.conf
 
 # Link file
 RUN ln -s /etc/apache2/mods-available/proxy_html.conf /etc/apache2/mods-enabled/proxy_html.conf
+
+# Add example site
+ADD sites-available/https-only-example.conf /etc/apache2/sites-available/https-only-example.conf
 
 # Create certificate directories
 RUN mkdir -p /etc/ssl/apache/keys && \
